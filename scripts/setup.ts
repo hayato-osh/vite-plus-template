@@ -1,7 +1,15 @@
 // テンプレートから作ったプロジェクトで一度だけ実行する。選んだ features/ を重ね、テンプレート用のファイルを消す。
-// 使い方: vp run setup --css tailwind
-import { cpSync, existsSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
-import { relative } from "node:path";
+// 使い方: vp run setup --css tailwind [--name <プロジェクト名>]
+import {
+  cpSync,
+  existsSync,
+  readFileSync,
+  rmSync,
+  statSync,
+  symlinkSync,
+  writeFileSync,
+} from "node:fs";
+import { basename, relative } from "node:path";
 import { parseArgs } from "node:util";
 
 // オプション → 値 → 重ねる features/<名前>(null なら何も重ねない)。先頭の値がデフォルト
@@ -9,14 +17,14 @@ const choices: Record<string, Record<string, string | null>> = {
   css: { modules: null, tailwind: "tailwind" },
 };
 
-const { values } = parseArgs({
-  options: Object.fromEntries(
-    Object.entries(choices).map(([option, table]) => [
-      option,
-      { type: "string" as const, default: Object.keys(table)[0] },
-    ]),
-  ),
-});
+const options: Record<string, { type: "string"; default: string }> = {
+  name: { type: "string", default: basename(process.cwd()) },
+};
+for (const [option, table] of Object.entries(choices)) {
+  options[option] = { type: "string", default: Object.keys(table)[0] };
+}
+const { values } = parseArgs({ options });
+const projectName = String(values.name);
 
 const features: string[] = [];
 for (const [option, table] of Object.entries(choices)) {
@@ -87,6 +95,7 @@ for (const name of features) {
   for (const path of feature.remove ?? []) rmSync(path, { force: true });
 }
 
+pkg.name = projectName;
 delete pkg.scripts.setup;
 writeJson("package.json", pkg);
 
@@ -127,9 +136,11 @@ for (const path of ["README.md", "AGENTS.md"]) {
     .replace(/<!-- if (\S+) -->\n([\s\S]*?)<!-- endif -->\n/g, (_, cond: string, body: string) =>
       holds(cond) ? body : "",
     )
-    .replace(/\n{3,}/g, "\n\n");
+    .replace(/\n{3,}/g, "\n\n")
+    .replace(/^# vite-plus-template$/m, `# ${projectName}`);
   writeFileSync(path, text);
 }
+edit("index.html", "<title>vite-plus-template</title>", `<title>${projectName}</title>`);
 edit("vite.config.ts", /^ *\/\/ features\/.*\n *ignorePatterns: \["features\/\*\*"\],\n/m, "");
 edit("tsconfig.node.json", /,\s*"scripts"/, "");
 
@@ -142,6 +153,10 @@ for (const path of [
 ]) {
   rmSync(path, { recursive: true, force: true });
 }
+
+// vp create(degit)はシンボリックリンクをキャッシュ内の絶対パスに変えるので、相対パスで作り直す
+rmSync(".claude/skills", { force: true });
+symlinkSync("../.agents/skills", ".claude/skills");
 
 console.log(
   `setup 完了 (features: ${features.join(", ") || "なし"})。次に vp install を実行する。`,

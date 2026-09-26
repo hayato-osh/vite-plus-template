@@ -9,20 +9,21 @@
 このリポジトリはテンプレート。`vp create` で作り、`vp run setup` で構成を選ぶ。
 
 ```sh
-vp create github:hayato-osh/vite-plus-template
+vp create github:hayato-osh/vite-plus-template --no-interactive -- <project>
 cd <project>
 vp run setup              # 構成を選ぶ(下の表)。何も付けなければデフォルト
 vp install
 vp dev
 ```
 
-| オプション | 値                                |
-| ---------- | --------------------------------- |
-| `--css`    | `modules`(デフォルト)/ `tailwind` |
+| オプション | 値                                         |
+| ---------- | ------------------------------------------ |
+| `--css`    | `modules`(デフォルト)/ `tailwind`          |
+| `--name`   | プロジェクト名(デフォルトはディレクトリ名) |
 
-`vp run setup` は選んだ `features/` をプロジェクトに重ね、`features/` と `scripts/setup.ts` などテンプレート用のファイルを消す。一度だけ実行する。
+`vp create` の `--directory` は builtin テンプレート専用で、github テンプレートに付けるとエラーになる。ディレクトリ名は `--` の後に渡す。
 
-作成したら、`vite-plus-template` の名前をプロジェクト名に置き換える(`package.json` の `name`、`index.html` の `<title>`、`AGENTS.md` の見出し)。
+`vp run setup` は選んだ `features/` をプロジェクトに重ね、`features/` と `scripts/setup.ts` などテンプレート用のファイルを消す。`package.json` の `name`、`index.html` の `<title>`、`README.md` と `AGENTS.md` の見出しをプロジェクト名に置き換え、`.claude/skills` のシンボリックリンクを作り直す。一度だけ実行する。
 
 <!-- endif -->
 

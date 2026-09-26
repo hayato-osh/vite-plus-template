@@ -9,10 +9,26 @@ description: このリポジトリの PR を gh で作る手順。「PR を作�
 
 1. `git status` / `git log main..HEAD` で入る差分を確認。main 上ならブランチを切る。
 2. AGENTS.md の「完了の定義」(`vp check` / `vp test` / `vp run build`)をすべて通す。
-3. コミット。メッセージは日本語 (prefix は英語。`feat:` `fix:` `chore:` など)。粒度は下記「コミット粒度」に従う。
+3. コミット。メッセージは下記「コミットメッセージ」、粒度は「コミット粒度」に従う。
 4. `git push -u origin HEAD`
 5. UI 変更があれば before/after スクショを撮る (下記)。
 6. 本文を書いて `gh pr create`。
+
+## コミットメッセージ
+
+すべてのコミットを [Conventional Commits](https://www.conventionalcommits.org/ja/v1.0.0/) で書く。例外なし (fixup コミットも畳んだ後の形で守る)。
+
+```
+<type>(<scope>): <説明>
+
+<本文 (任意)>
+```
+
+- type は英小文字: `feat` `fix` `docs` `style` `refactor` `perf` `test` `build` `ci` `chore` `revert`
+- scope は任意。変更対象が明確なときだけ付ける (例: `feat(setup): ...`)。
+- 説明は日本語。末尾に句点を付けない。
+- 破壊的変更は `feat!:` のように `!` を付け、本文に `BREAKING CHANGE: ...` を書く。
+- PR タイトルも同じ形式にする。
 
 ## コミット粒度
 

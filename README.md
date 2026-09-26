@@ -58,6 +58,13 @@ Tailwind CSS v4 で書く。`src/index.css` で読み込み、`@tailwindcss/vite
 `vite-plugin-pwa` で manifest と Service Worker をビルド時に生成する。設定は `vite.config.ts` の `VitePWA()`。Service Worker は `vp dev` では動かないので、`vp run build && vp preview` で確かめる。
 <!-- endif -->
 
+<!-- if worker=worker -->
+
+## デプロイ
+
+Cloudflare Workers の静的アセットとして配信する。`vp run deploy` でビルドし、`dist/` を `wrangler deploy` で上げる。設定は `wrangler.jsonc`。知らないパスには `index.html` を返す(SPA)。
+<!-- endif -->
+
 ## 構成
 
 - lint とフォーマットは Oxlint(型情報を使うルールつき)と Oxfmt。設定は `vite.config.ts` の `lint` / `fmt` にまとめてあり、`.oxlintrc.json` は無い。

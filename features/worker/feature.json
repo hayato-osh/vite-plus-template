@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "wrangler": "catalog:worker"
+  },
+  "scripts": {
+    "deploy": "vp run build && wrangler deploy"
+  },
+  "edit": {
+    ".gitignore": [["node_modules\n", "node_modules\n.wrangler\n"]]
+  }
+}

@@ -38,6 +38,13 @@ vp run build    # tsc -b && vp build
 manifest と Service Worker は `vite-plugin-pwa` が生成する。`public/` に `manifest.webmanifest` や `sw.js` を手で置かず、`vite.config.ts` の `VitePWA()` の設定を変える。Service Worker の動作は `vp dev` では確かめられないので、`vp run build && vp preview` で確かめる。
 <!-- endif -->
 
+<!-- if worker=worker -->
+
+## デプロイ
+
+`vp run deploy` は本番に公開するので、ユーザーに頼まれたときだけ実行する。配信の設定は `wrangler.jsonc` に書く。Worker のスクリプト(`main`)は置いていない。API などが要るときは、`@cloudflare/vite-plugin` を入れてから足す。
+<!-- endif -->
+
 <!-- if template -->
 
 ## テンプレートの開発

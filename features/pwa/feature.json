@@ -1,0 +1,18 @@
+{
+  "devDependencies": {
+    "vite-plugin-pwa": "catalog:pwa"
+  },
+  "edit": {
+    "vite.config.ts": [
+      [
+        "import react from \"@vitejs/plugin-react\";",
+        "import react from \"@vitejs/plugin-react\";\nimport { VitePWA } from \"vite-plugin-pwa\";"
+      ],
+      [
+        "// https://vite.dev/config/",
+        "const pwa = () =>\n  VitePWA({\n    registerType: \"autoUpdate\",\n    manifest: {\n      name: \"vite-plus-template\",\n      icons: [{ src: \"favicon.svg\", sizes: \"any\", type: \"image/svg+xml\" }],\n    },\n  });\n\n// https://vite.dev/config/"
+      ],
+      ["react()", "react(), pwa()"]
+    ]
+  }
+}

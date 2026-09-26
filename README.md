@@ -19,6 +19,7 @@ vp dev
 | オプション | 値                                         |
 | ---------- | ------------------------------------------ |
 | `--css`    | `modules`(デフォルト)/ `tailwind`          |
+| `--pwa`    | `none`(デフォルト)/ `pwa`                  |
 | `--name`   | プロジェクト名(デフォルトはディレクトリ名) |
 
 `vp create` の `--directory` は builtin テンプレート専用で、github テンプレートに付けるとエラーになる。ディレクトリ名は `--` の後に渡す。
@@ -48,6 +49,13 @@ CSS Modules(`*.module.css`)で書く。
 <!-- if css=tailwind -->
 
 Tailwind CSS v4 で書く。`src/index.css` で読み込み、`@tailwindcss/vite` プラグインでビルドする。
+<!-- endif -->
+
+<!-- if pwa=pwa -->
+
+## PWA
+
+`vite-plugin-pwa` で manifest と Service Worker をビルド時に生成する。設定は `vite.config.ts` の `VitePWA()`。Service Worker は `vp dev` では動かないので、`vp run build && vp preview` で確かめる。
 <!-- endif -->
 
 ## 構成

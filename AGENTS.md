@@ -31,6 +31,13 @@ vp run build    # tsc -b && vp build
 スタイルは Tailwind CSS(v4)のユーティリティクラスで書く。CSS ファイルは `src/index.css` の `@import "tailwindcss";` だけにし、コンポーネントごとの CSS ファイルは作らない。設定は `tailwind.config.js` ではなく CSS の `@theme` に書く。
 <!-- endif -->
 
+<!-- if pwa=pwa -->
+
+## PWA
+
+manifest と Service Worker は `vite-plugin-pwa` が生成する。`public/` に `manifest.webmanifest` や `sw.js` を手で置かず、`vite.config.ts` の `VitePWA()` の設定を変える。Service Worker の動作は `vp dev` では確かめられないので、`vp run build && vp preview` で確かめる。
+<!-- endif -->
+
 <!-- if template -->
 
 ## テンプレートの開発

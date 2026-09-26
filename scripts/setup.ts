@@ -1,5 +1,5 @@
 // テンプレートから作ったプロジェクトで一度だけ実行する。選んだ features/ を重ね、テンプレート用のファイルを消す。
-// 使い方: vp run setup --css tailwind [--name <プロジェクト名>]
+// 使い方: vp run setup --css tailwind --pwa pwa [--name <プロジェクト名>]
 import {
   cpSync,
   existsSync,
@@ -15,6 +15,7 @@ import { parseArgs } from "node:util";
 // オプション → 値 → 重ねる features/<名前>(null なら何も重ねない)。先頭の値がデフォルト
 const choices: Record<string, Record<string, string | null>> = {
   css: { modules: null, tailwind: "tailwind" },
+  pwa: { none: null, pwa: "pwa" },
 };
 
 const options: Record<string, { type: "string"; default: string }> = {
@@ -141,6 +142,7 @@ for (const path of ["README.md", "AGENTS.md"]) {
   writeFileSync(path, text);
 }
 edit("index.html", "<title>vite-plus-template</title>", `<title>${projectName}</title>`);
+edit("vite.config.ts", '"vite-plus-template"', JSON.stringify(projectName)); // pwa の manifest.name
 edit("vite.config.ts", /^ *\/\/ features\/.*\n *ignorePatterns: \["features\/\*\*"\],\n/m, "");
 edit("tsconfig.node.json", /,\s*"scripts"/, "");
 

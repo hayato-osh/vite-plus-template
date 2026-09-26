@@ -22,6 +22,7 @@ jobs:
       fail-fast: false
       matrix:
         css: [modules, tailwind]
+        pwa: [none, pwa]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -29,7 +30,7 @@ jobs:
       - uses: voidzero-dev/setup-vp@24d870228786dc83ae73482406bdd1e7befaec14 # v1.21.0
         with:
           cache: true
-      - run: vp run setup --css ${{ matrix.css }}
+      - run: vp run setup --css ${{ matrix.css }} --pwa ${{ matrix.pwa }}
       # setup で依存が変わるので lockfile の更新を許す
       - run: vp install --no-frozen-lockfile
       - run: vp check

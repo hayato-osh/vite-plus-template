@@ -18,6 +18,7 @@ vp run build    # tsc -b && vp build
 
 - 操作はすべて `vp` 経由で行う(`vp install`、`vp add`、`vp run <script>`)。`pnpm` / `npm` / `npx` を直接呼ばない。固定したパッケージマネージャは `vp` が解決する。
 - import は `vite` ではなく `vite-plus` から行う(lint ルール `vite-plus/prefer-vite-plus-imports` で強制)。
+- `src/` 内の import は、同じディレクトリなら `./`、それ以外は `@/`(`src/` を指す)で書く。`../` は使わない(lint ルール `no-restricted-imports` で強制)。
 - pre-commit フックは `vp staged` を実行し、ステージしたファイルに `vp check --fix` をかける。`--no-verify` で回避しない。
 
 ## スタイル

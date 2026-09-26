@@ -39,6 +39,13 @@ vp run build    # tsc -b && vp build
 manifest と Service Worker は `vite-plugin-pwa` が生成する。`public/` に `manifest.webmanifest` や `sw.js` を手で置かず、`vite.config.ts` の `VitePWA()` の設定を変える。Service Worker の動作は `vp dev` では確かめられないので、`vp run build && vp preview` で確かめる。
 <!-- endif -->
 
+<!-- if router=tanstack -->
+
+## ルーティング
+
+ページは TanStack Router のファイルベースで、`src/routes/` にファイルを置いて足す(`createFileRoute`)。`src/routeTree.gen.ts` は `vp dev` / `vp build` が生成するので手で直さない。ルートを足したら `vp build` で作り直してからコミットする。ページ間の移動は `<a href>` ではなく `Link` を使う。
+<!-- endif -->
+
 <!-- if worker=worker -->
 
 ## デプロイ

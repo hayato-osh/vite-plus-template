@@ -58,6 +58,13 @@ Tailwind CSS v4 で書く。`src/index.css` で読み込み、`@tailwindcss/vite
 `vite-plugin-pwa` で manifest と Service Worker をビルド時に生成する。設定は `vite.config.ts` の `VitePWA()`。Service Worker は `vp dev` では動かないので、`vp run build && vp preview` で確かめる。
 <!-- endif -->
 
+<!-- if router=tanstack -->
+
+## ルーティング
+
+TanStack Router のファイルベースルーティング。ページは `src/routes/` に置く。`src/routeTree.gen.ts` は `vp dev` / `vp build` が生成する。
+<!-- endif -->
+
 <!-- if worker=worker -->
 
 ## デプロイ

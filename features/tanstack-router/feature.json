@@ -1,0 +1,36 @@
+{
+  "dependencies": {
+    "@tanstack/react-router": "catalog:tanstack-router"
+  },
+  "devDependencies": {
+    "@tanstack/router-plugin": "catalog:tanstack-router"
+  },
+  "edit": {
+    "vite.config.ts": [
+      [
+        "import react from \"@vitejs/plugin-react\";",
+        "import { tanstackRouter } from \"@tanstack/router-plugin/vite\";\nimport react from \"@vitejs/plugin-react\";"
+      ],
+      [
+        "      \"**/.agents/skills/ui-ux-pro-max/**\",\n",
+        "      \"**/.agents/skills/ui-ux-pro-max/**\",\n      // TanStack Router が生成する\n      \"src/routeTree.gen.ts\",\n"
+      ],
+      [
+        "// https://vite.dev/config/",
+        "const router = () => tanstackRouter({ target: \"react\", autoCodeSplitting: true });\n\n// https://vite.dev/config/"
+      ],
+      ["react()", "router(), react()"]
+    ],
+    "src/main.tsx": [
+      [
+        "import { StrictMode } from \"react\";",
+        "import { RouterProvider, createRouter } from \"@tanstack/react-router\";\nimport { StrictMode } from \"react\";"
+      ],
+      [
+        "import App from \"@/App.tsx\";\n",
+        "import { routeTree } from \"@/routeTree.gen.ts\";\n\nconst router = createRouter({ routeTree });\n\ndeclare module \"@tanstack/react-router\" {\n  interface Register {\n    router: typeof router;\n  }\n}\n"
+      ],
+      ["<App />", "<RouterProvider router={router} />"]
+    ]
+  }
+}

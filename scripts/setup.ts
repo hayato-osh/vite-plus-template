@@ -1,5 +1,5 @@
 // テンプレートから作ったプロジェクトで一度だけ実行する。選んだ features/ を重ね、テンプレート用のファイルを消す。
-// 使い方: vp run setup --css tailwind --pwa pwa [--name <プロジェクト名>]
+// 使い方: vp run setup --css tailwind --pwa pwa --router none [--name <プロジェクト名>]
 import {
   cpSync,
   existsSync,
@@ -17,6 +17,7 @@ const choices: Record<string, Record<string, string | null>> = {
   css: { modules: null, tailwind: "tailwind" },
   pwa: { none: null, pwa: "pwa" },
   worker: { none: null, worker: "worker" },
+  router: { tanstack: "tanstack-router", none: null },
 };
 
 const options: Record<string, { type: "string"; default: string }> = {

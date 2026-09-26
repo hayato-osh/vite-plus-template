@@ -3,6 +3,9 @@ import { defineConfig, lazyPlugins } from "vite-plus";
 
 // https://vite.dev/config/
 export default defineConfig({
+  resolve: {
+    tsconfigPaths: true,
+  },
   staged: {
     "*": "vp check --fix",
   },
@@ -35,6 +38,13 @@ export default defineConfig({
         },
       ],
       "vite-plus/prefer-vite-plus-imports": "error",
+      // 同じディレクトリは "./"、それ以外は "@/" で import する
+      "no-restricted-imports": [
+        "error",
+        {
+          patterns: [{ group: ["../*"], message: '親ディレクトリは "@/" で import する' }],
+        },
+      ],
     },
     options: {
       typeAware: true,

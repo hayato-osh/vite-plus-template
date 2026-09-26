@@ -9,7 +9,19 @@ export default defineConfig({
   test: {
     passWithNoTests: true,
   },
-  fmt: {},
+  fmt: {
+    // 外部のスキル(uipro init --ai universal で入れたもの)。更新時に差分が出ないよう整形しない。
+    // Tailwind 用の 3 つはテンプレート本体では features/tailwind/ に、setup 後は .agents/skills/ にある
+    ignorePatterns: [
+      "**/.agents/skills/banner-design/**",
+      "**/.agents/skills/brand/**",
+      "**/.agents/skills/design/**",
+      "**/.agents/skills/slides/**",
+      "**/.agents/skills/design-system/**",
+      "**/.agents/skills/ui-styling/**",
+      "**/.agents/skills/ui-ux-pro-max/**",
+    ],
+  },
   lint: {
     // features/ は setup 後に Template ワークフローで検査する。setup がこの行を消す
     ignorePatterns: ["features/**"],

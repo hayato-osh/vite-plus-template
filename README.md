@@ -71,7 +71,7 @@ Cloudflare Workers の静的アセットとして配信する。`vp run deploy` 
 - Markdown の文章は textlint(`@textlint-ja/preset-ai-writing`)で検査する。`vp run lint:text` で実行する。
 - pre-commit フック(`.vite-hooks/pre-commit`)が `vp staged` を実行し、ステージしたファイルに `vp check --fix` をかける。
 - エージェント向けの指示は `AGENTS.md` にある(Claude Code、Codex などが読む)。完了の定義とルールを書いている。
-- スキルは `.agents/skills/`(`pr`、`testing`、`writing-skills`)に置き、`.claude/skills` はそこへのシンボリックリンク。PR テンプレートは `.github/pull_request_template.md`。
+- スキルは `.agents/skills/`(`pr`、`testing`、`writing-skills`、デザイン用の `design` など。Tailwind を選ぶと UI 用の `ui-ux-pro-max` なども入る)に置き、`.claude/skills` はそこへのシンボリックリンク。PR テンプレートは `.github/pull_request_template.md`。
 
 ## メンテナンス
 

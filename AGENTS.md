@@ -64,6 +64,17 @@ manifest と Service Worker は `vite-plugin-pwa` が生成する。`public/` �
 - `pr` — PR の作り方(テンプレートの埋め方、before/after スクショ)
 - `testing` — テストの書き方(ラベル、`test.each`、期待値の作り方)
 - `writing-skills` — スキル(SKILL.md)の書き方(description、段階的開示、評価の回し方)
+- `design` — ロゴ、CI、アイコン、SNS 画像などのデザイン(外部スキル)
+- `brand` — ブランドのトーン、ビジュアルアイデンティティ(外部スキル)
+- `slides` — HTML のプレゼンテーション(外部スキル)
+- `banner-design` — SNS、広告、ヒーロー画像のバナー(外部スキル)
+
+外部スキルは `uipro init --ai universal` で入れたもの。手で直さず、更新するときは入れ直す。
+
+<!-- if css=tailwind -->
+
+UI のデザインや実装の前に `ui-ux-pro-max` を読む。`ui-styling`(Tailwind と shadcn/ui)と `design-system`(デザイントークン)も外部スキル。スキルの内容がこのファイルの「スタイル」とぶつかるときは、このファイルに従う。
+<!-- endif -->
 
 # Vite+(Web 向け統合ツールチェーン)の使い方
 

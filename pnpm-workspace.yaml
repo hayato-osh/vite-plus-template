@@ -1,0 +1,20 @@
+catalog:
+  vite: npm:@voidzero-dev/vite-plus-core@0.3.1
+  vite-plus: 0.3.1
+overrides:
+  vite@*: "catalog:"
+peerDependencyRules:
+  allowAny:
+    - vite
+  allowedVersions:
+    vite: "*"
+minimumReleaseAge: 10080
+trustPolicy: no-downgrade
+blockExoticSubdeps: true
+strictDepBuilds: true
+savePrefix: ""
+# テンプレートの features/ 由来の依存(setup で選ばれなかった feature の分は消える)
+catalogs:
+  tailwind:
+    "@tailwindcss/vite": 4.3.3
+    tailwindcss: 4.3.3

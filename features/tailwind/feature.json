@@ -1,0 +1,18 @@
+{
+  "devDependencies": {
+    "@tailwindcss/vite": "catalog:tailwind",
+    "tailwindcss": "catalog:tailwind"
+  },
+  "edit": {
+    "vite.config.ts": [
+      [
+        "import react from \"@vitejs/plugin-react\";",
+        "import tailwindcss from \"@tailwindcss/vite\";\nimport react from \"@vitejs/plugin-react\";"
+      ],
+      ["react()", "react(), tailwindcss()"]
+    ],
+    "src/main.tsx": [["import App from", "import \"./index.css\";\nimport App from"]]
+  },
+  "overwrite": ["src/App.tsx"],
+  "remove": ["src/App.module.css"]
+}

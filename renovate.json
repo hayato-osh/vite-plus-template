@@ -1,0 +1,53 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:best-practices"],
+  "rangeStrategy": "pin",
+  "minimumReleaseAge": "7 days",
+  "prHourlyLimit": 4,
+  "prConcurrentLimit": 10,
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true,
+    "schedule": ["before 6am on monday"]
+  },
+  "vulnerabilityAlerts": {
+    "minimumReleaseAge": "0 days",
+    "labels": ["security"]
+  },
+  "packageRules": [
+    {
+      "description": "patch / pin / digest は CI が通れば自動マージ",
+      "matchUpdateTypes": ["patch", "pin", "digest"],
+      "automerge": true,
+      "platformAutomerge": true
+    },
+    {
+      "description": "patch 更新をまとめる",
+      "matchUpdateTypes": ["patch"],
+      "groupName": "patch updates"
+    },
+    {
+      "description": "minor 更新をまとめる",
+      "matchUpdateTypes": ["minor"],
+      "groupName": "minor updates"
+    },
+    {
+      "description": "devDependencies の minor は自動マージするので runtime の minor PR と分ける",
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["minor"],
+      "groupName": "minor updates (devDependencies)",
+      "automerge": true,
+      "platformAutomerge": true
+    },
+    {
+      "description": "vite は vite-plus-core のエイリアスなので vite-plus と同じ版で上げる",
+      "matchPackageNames": ["vite-plus", "@voidzero-dev/vite-plus-core"],
+      "groupName": "vite-plus"
+    },
+    {
+      "description": "devEngines の pnpm はツールチェーン扱い",
+      "matchDepNames": ["pnpm", "node"],
+      "semanticCommitType": "chore"
+    }
+  ]
+}

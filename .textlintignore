@@ -1,0 +1,5 @@
+# textlint (@textlint-ja/preset-ai-writing) の対象外。
+# textlint の ignore はディレクトリ末尾 "/" を展開しないので "/**" 形式で書く。
+**/node_modules/**
+**/dist/**
+.claude/worktrees/**

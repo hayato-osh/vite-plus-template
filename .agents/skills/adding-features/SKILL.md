@@ -101,7 +101,7 @@ matrix:
   db: [none, d1]
 ```
 
-オプションを足したら、setup の行にも `--db ${{ matrix.db }}` を足す。matrix は全組み合わせを回す。`requires` で成り立たない組み合わせは `exclude` で外す。
+オプションを足したら、setup の行にも `--db ${{ matrix.db }}` を足す。`upgrading-dependencies` スキルの全組み合わせのループにも足す。matrix は全組み合わせを回す。`requires` で成り立たない組み合わせは `exclude` で外す。
 
 ```yaml
 matrix:

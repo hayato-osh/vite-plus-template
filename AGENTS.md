@@ -62,6 +62,7 @@ manifest と Service Worker は `vite-plugin-pwa` が生成する。`public/` �
 - テンプレート本体で `vp run setup` を実行しない。`features/` と `scripts/` が消える。
 - `features/`、`scripts/setup.ts`、README.md / AGENTS.md の `<!-- if ... -->` ブロックを変えるときは、先に `adding-features` スキルを読む。
 - ルートのファイルを変えたら、`features/*/feature.json` の `edit` がそのファイルを指していないか確認する。指していれば、置換前の文字列がまだ残っているかを確かめる(消えると setup がエラーで止まる)。
+- ルートの依存や `pnpm-workspace.yaml` の `catalogs` のバージョンを上げるときは、先に `upgrading-dependencies` スキルを読む。新しい版で推奨される書き方に、ルートと `features/` のコードを合わせる。
 
 <!-- endif -->
 

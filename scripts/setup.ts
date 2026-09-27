@@ -156,6 +156,7 @@ for (const path of [
   "scripts",
   ".github/workflows/template.yml",
   ".agents/skills/adding-features",
+  ".agents/skills/upgrading-dependencies",
   "LICENSE",
 ]) {
   rmSync(path, { recursive: true, force: true });

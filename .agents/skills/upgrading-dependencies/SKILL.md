@@ -49,7 +49,7 @@ catalogs の依存(features/ のもの)はテンプレートの `node_modules` �
 書き出した API 名やオプション名で、次の場所を grep する。
 
 - `src/`、`vite.config.ts`、`tsconfig.*.json` などルートのファイル
-- `features/*/` のファイル(`src/App.tsx`、`src/routes/*.tsx`、`src/index.css`、`wrangler.jsonc` など)
+- `features/*/` のファイル(`src/App.tsx`、`src/routes/*.tsx`、`src/index.css`、`cloudflare.config.ts` など)
 - `features/*/feature.json` の `edit` の置換後の文字列(`VitePWA({...})` や `tanstackRouter({...})` のように、コードがここに埋まっている)
 - `AGENTS.md` と `README.md` の条件ブロックに書いたルール(ライブラリの書き方を指示しているもの)
 - `pnpm-workspace.yaml` と `vite.config.ts` のコメント付きの回避策(`trustPolicyExclude`、`ignorePatterns` など)。理由が解消していれば消す
@@ -60,7 +60,7 @@ catalogs の依存(features/ のもの)はテンプレートの `node_modules` �
 - `feature.json` の `edit` の置換前の文字列はルートのファイルに依存する。ルートを書き換えたら、置換前の文字列がまだ残っているかを 5 のチェックで確かめる。
 - `features/tanstack-router/src/routeTree.gen.ts` は生成物なので手で直さない。`@tanstack/router-plugin` を上げたら、5 のコピーで作り直して持ち帰る(下記)。
 - AGENTS.md のルールを書き換えるときは、`adding-features` スキルの条件ブロックの書き方に従う。
-- 版に固有の事情(`trustPolicyExclude` の版、`wrangler.jsonc` の `compatibility_date`、`allowBuilds`)も新しい版に合わせる。
+- 版に固有の事情(`trustPolicyExclude` の版、`cloudflare.config.ts` の `compatibilityDate`、`allowBuilds`)も新しい版に合わせる。
 
 ### 5. 検証
 

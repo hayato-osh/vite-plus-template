@@ -145,8 +145,8 @@ for (const path of ["README.md", "AGENTS.md"]) {
 }
 edit("index.html", "<title>vite-plus-template</title>", `<title>${projectName}</title>`);
 edit("vite.config.ts", '"vite-plus-template"', JSON.stringify(projectName)); // pwa の manifest.name
-if (existsSync("wrangler.jsonc")) {
-  edit("wrangler.jsonc", '"vite-plus-template"', JSON.stringify(projectName)); // worker の名前
+if (existsSync("cloudflare.config.ts")) {
+  edit("cloudflare.config.ts", '"vite-plus-template"', JSON.stringify(projectName)); // worker の名前
 }
 edit("vite.config.ts", /^ *\/\/ features\/.*\n *ignorePatterns: \["features\/\*\*"\],\n/m, "");
 edit("tsconfig.node.json", /,\s*"scripts"/, "");

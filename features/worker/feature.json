@@ -1,11 +1,20 @@
 {
   "devDependencies": {
-    "wrangler": "catalog:worker"
+    "@cloudflare/vite-plugin": "catalog:worker",
+    "cf": "catalog:worker"
   },
   "scripts": {
-    "deploy": "vp run build && wrangler deploy"
+    "deploy": "vp run build && cf deploy --prebuilt"
   },
   "edit": {
-    ".gitignore": [["node_modules\n", "node_modules\n.wrangler\n"]]
+    "vite.config.ts": [
+      [
+        "import react from \"@vitejs/plugin-react\";",
+        "import { cloudflare } from \"@cloudflare/vite-plugin\";\nimport react from \"@vitejs/plugin-react\";"
+      ],
+      ["react()", "react(), cloudflare()"]
+    ],
+    ".gitignore": [["node_modules\n", "node_modules\n.wrangler\n.cloudflare\n"]],
+    "tsconfig.node.json": [["\"vite.config.ts\"", "\"vite.config.ts\", \"cloudflare.config.ts\""]]
   }
 }

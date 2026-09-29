@@ -69,7 +69,7 @@ TanStack Router のファイルベースルーティング。ページは `src/r
 
 ## デプロイ
 
-Cloudflare Workers の静的アセットとして配信する。`vp run deploy` でビルドし、`dist/` を `wrangler deploy` で上げる。設定は `wrangler.jsonc`。知らないパスには `index.html` を返す(SPA)。
+Cloudflare Workers の静的アセットとして配信する。`vp run deploy` でビルドし、`.cloudflare/output/` を `cf deploy` で上げる。設定は `cloudflare.config.ts`。知らないパスには `index.html` を返す(SPA)。
 <!-- endif -->
 
 ## 構成

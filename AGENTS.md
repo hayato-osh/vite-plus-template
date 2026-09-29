@@ -50,7 +50,7 @@ manifest と Service Worker は `vite-plugin-pwa` が生成する。`public/` �
 
 ## デプロイ
 
-`vp run deploy` は本番に公開するので、ユーザーに頼まれたときだけ実行する。配信の設定は `wrangler.jsonc` に書く。Worker のスクリプト(`main`)は置いていない。API などが要るときは、`@cloudflare/vite-plugin` を入れてから足す。
+`vp run deploy` は本番に公開するので、ユーザーに頼まれたときだけ実行する。Cloudflare の操作は `cf` で行う(`vp exec cf <command>`)。Worker の設定(名前、compatibility date、アセットの扱い)は `cloudflare.config.ts` に書く。ビルドは `vite.config.ts` の `cloudflare()` が行い、`vp build` の出力は `.cloudflare/output/` に出る。`vp run deploy` はビルドしてから、その出力を `cf deploy --prebuilt` で上げる。Worker のスクリプトは置いていない。API などが要るときは `cloudflare.config.ts` の `worker.entrypoint` に足す。
 <!-- endif -->
 
 <!-- if template -->

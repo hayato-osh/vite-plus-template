@@ -25,6 +25,17 @@ minimumReleaseAgeExclude:
   - "@cloudflare/workerd-linux-64@1.20260926.1"
   - "@cloudflare/workerd-linux-arm64@1.20260926.1"
   - "@cloudflare/workerd-windows-64@1.20260926.1"
+  # Vite+ のツールチェーンは vp migrate の推奨に従って除外する。公開日がパッケージごとにずれ、lockfile の更新が止まるため
+  - vite-plus
+  - "@voidzero-dev/*"
+  - oxlint
+  - "@oxlint/*"
+  - oxlint-tsgolint
+  - "@oxlint-tsgolint/*"
+  - oxfmt
+  - "@oxfmt/*"
+  - vitest
+  - "@vitest/*"
 # pwa(workbox-build@7.4.1)の推移的依存。正規の公開だが no-downgrade に掛かるので版を固定して除外する
 trustPolicyExclude:
   - "@trickfilm400/rollup-plugin-off-main-thread@3.0.0-pre1"
